@@ -1,0 +1,7 @@
+#Ignore some files
+*.swp
+*~
+*.DS_Store
+*.log
+*.idea
+*.core
