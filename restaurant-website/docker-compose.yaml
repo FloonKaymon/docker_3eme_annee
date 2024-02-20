@@ -1,2 +1,27 @@
 # Définir cette configuration Compose afin de lancer l'application
 # Grilli en production.
+
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - website:/var/www/html/
+      - .docker/nginx/:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    depends_on:
+    - php-fpm
+
+  php-fpm:
+    build: .
+    volumes:
+      - website:/var/www/html/
+    environment:
+      - APP_ENV=prod
+
+volumes:  
+  website:
+
+  
